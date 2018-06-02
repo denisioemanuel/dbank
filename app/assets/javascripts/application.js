@@ -22,16 +22,16 @@ $(document).ready(function(){
 
   feather.replace();
 
-  $('#modal').on('shown.bs.modal', function (event) {
-    $('#modalConta').trigger('focus');
-    var button = $(event.relatedTarget);
-    var title = button.data('title-modal');
-    var modal = $(this);
-    modal.find('.modal-title').text(title);
-    console.log(event);
-    console.log(button);
-    var a = button.attr('href');
-    modal.find('.modal-body').html('');
-    console.log(a);
-  });
+  // $('#modal').on('shown.bs.modal', function (event) {
+  //   $('#modalConta').trigger('focus');
+  //   var button = $(event.relatedTarget);
+  //   var title = button.data('title-modal');
+  //   var modal = $(this);
+  //   modal.find('.modal-title').text(title);
+  //   console.log(event);
+  //   console.log(button);
+  //   var a = button.attr('href');
+  //   modal.find('.modal-body').load(a+".js");
+  //   console.log(a);
+  // });
 });

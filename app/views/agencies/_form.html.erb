@@ -11,17 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :number %>
-    <%= form.number_field :number %>
+    <%= form.number_field :number, class:"form-control", data:{ "aria-describedby": "numberHelp"}%>
+    <small id="numberHelp" class="form-text text-muted">Digite somente números</small>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class:"form-control" , placeholder: "EX: Rua Nome da Rua , 150 - Bairro" %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+<div class="btn-toolbar">
+  <div class="btn-group mr-4">
+    <%= form.submit "Salvar", class:"btn btn-primary", data:{role:"group"}%>
+    <br/>
   </div>
 <% end %>

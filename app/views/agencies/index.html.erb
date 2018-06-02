@@ -4,35 +4,45 @@
   <h1 class="h2">Agência</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group mr-2">
-      <%= link_to 'Adicionar', new_agency_path , class:'btn btn-sm btn-outline-secondary', data: { toggle:'modal',  'title-modal': 'Adicionar', target:'#modal' } %>
+      <%#= link_to 'Adicionar', new_agency_path , class:'btn btn-sm btn-outline-secondary', data: { toggle:'modal',  'title-modal': 'Adicionar', target:'#modal' } %>
+        <%= link_to 'Adicionar', new_agency_path , class:'btn btn-sm btn-outline-secondary' %>
+      </div>
     </div>
   </div>
-</div>
-<%= link_to "New Task", new_agency_path, id: "new_link", remote: true %>
 
-<div class="table-responsive">
-  <table class="table table-striped table-sm">
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Address</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Address</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @agencies.each do |agency| %>
-      <tr>
-        <td><%= agency.number %></td>
-        <td><%= agency.address %></td>
-        <td><%= link_to 'Show', agency %></td>
-        <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
-        <td><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @agencies.each do |agency| %>
+          <tr>
+            <td><%= agency.number %></td>
+            <td><%= agency.address %></td>
+            <td>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                  <%= link_to edit_agency_path(agency), class:"btn btn-primary btn-sm" do%>
+                  <span class="fe fe-edit">
+                  <%end%>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                  <%= link_to agency, method: :delete, class:"btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } do %>
+                  <span class="fe fe-trash">
+                  <%end%>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%#= render "layouts/shared/modal"%>
 
-<%= render "layouts/shared/modal"%>
-
-<br>
+      <br>
