@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Agência</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <%= link_to 'Adicionar', new_agency_path , class:'btn btn-sm btn-outline-secondary', data: { toggle:'modal',  'title-modal': 'Adicionar', target:'#modal' } %>
+    </div>
+  </div>
+</div>
+<%= link_to "New Task", new_agency_path, id: "new_link", remote: true %>
+
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agencies.each do |agency| %>
+      <tr>
+        <td><%= agency.number %></td>
+        <td><%= agency.address %></td>
+        <td><%= link_to 'Show', agency %></td>
+        <td><%= link_to 'Edit', edit_agency_path(agency) %></td>
+        <td><%= link_to 'Destroy', agency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render "layouts/shared/modal"%>
+
+<br>

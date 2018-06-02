@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2018-06-02 03:10:26
+  value: 1.5
+  type: 1
+  User: one
+  Account: one
+
+two:
+  date: 2018-06-02 03:10:26
+  value: 1.5
+  type: 1
+  User: two
+  Account: two
