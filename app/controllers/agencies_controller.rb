@@ -25,29 +25,20 @@ class AgenciesController < ApplicationController
   # POST /agencies.json
   def create
     @agency = Agency.new(agency_params)
-
-    respond_to do |format|
-      if @agency.save
-        format.html { redirect_to @agency, notice: 'Agency was successfully created.' }
-        format.json { render :show, status: :created, location: @agency }
-      else
-        format.html { render :new }
-        format.json { render json: @agency.errors, status: :unprocessable_entity }
-      end
+    if @agency.save
+      redirect_to agencies_path, notice: 'Agência criada com sucesso.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /agencies/1
   # PATCH/PUT /agencies/1.json
   def update
-    respond_to do |format|
-      if @agency.update(agency_params)
-        format.html { redirect_to @agency, notice: 'Agency was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agency }
-      else
-        format.html { render :edit }
-        format.json { render json: @agency.errors, status: :unprocessable_entity }
-      end
+    if @agency.update(agency_params)
+      redirect_to agencies_path, notice: 'Agência atualizada com sucesso.'
+    else
+      render :edit
     end
   end
 
@@ -55,9 +46,10 @@ class AgenciesController < ApplicationController
   # DELETE /agencies/1.json
   def destroy
     @agency.destroy
+    #redirect_to agencies_path, notice: 'Agência excluída com sucesso.'
     respond_to do |format|
-      format.html { redirect_to agencies_url, notice: 'Agency was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to agencies_path, notice: 'Agência excluída com sucesso.' }
+      format.json { redirect_to agencies_path, notice: 'Agência excluída com sucesso.' }
     end
   end
 

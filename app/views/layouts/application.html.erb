@@ -16,7 +16,7 @@
 
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#"><span class="fe fe-log-out"></span> Sair</a>
+          <a class="nav-link" href="#"><span class="fe fe-logout"></span> Sair</a>
         </li>
       </ul>
     </nav>
@@ -27,31 +27,31 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/">
                   <span class="fe fe-home"></span>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="conta_bancaria.html">
+                <a class="nav-link" href="/accounts">
                   <span class="fe fe-document"></span>
                   Conta Bancária
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="movimentacao.html">
+                <a class="nav-link" href="/transactions">
                   <span class="fe fe-activity"></span>
                   Movimentações
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="usuario.html">
+                <a class="nav-link" href="/users">
                   <span class="fe fe-user"></span>
                   Usuário
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="/agencies">
                   <span class="fe fe-home"></span>
                   Agência<span class="sr-only">(current)</span>
                 </a>
@@ -60,6 +60,15 @@
           </div>
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <% if notice %>
+              <br>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=notice%>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+          <% end %>
 
         <%= yield %>
 
@@ -67,8 +76,6 @@
         </main>
       </div>
     </div>
-
-    <%= render partial:"layouts/shared/notifications" %>
   </body>
   <!-- <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script> -->
 </html>

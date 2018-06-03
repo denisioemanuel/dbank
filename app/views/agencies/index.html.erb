@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Agência</h1>
@@ -33,8 +32,9 @@
                   <%end%>
                 </div>
                 <div class="btn-group mr-2" role="group" aria-label="Second group">
-                  <%= link_to agency, method: :delete, class:"btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } do %>
-                  <span class="fe fe-trash">
+                  <%#= link_to agency_path(agency), method: :delete, class:"btn btn-danger btn-sm", data: { confirm: 'Você tem certeza?' } do %>
+                  <%= link_to agency_path(agency), class:'btn btn-sm btn-danger', data: { toggle:'modal', mensage: 'Você tem certeza que deseja excluir?', target:'#modalConfirm' } do %>
+                    <span class="fe fe-trash">
                   <%end%>
                 </div>
               </div>
@@ -43,6 +43,6 @@
         <% end %>
       </tbody>
     </table>
-    <%#= render "layouts/shared/modal"%>
+    <%= render "layouts/shared/modalConfirmation"%>
 
       <br>

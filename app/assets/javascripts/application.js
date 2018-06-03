@@ -10,28 +10,43 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// require rails-ujs
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require toastr
+//= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 
-$(document).ready(function(){
+$(document).ready(function() {
 
-  feather.replace();
+  $('.alert').alert();
 
-  // $('#modal').on('shown.bs.modal', function (event) {
-  //   $('#modalConta').trigger('focus');
-  //   var button = $(event.relatedTarget);
-  //   var title = button.data('title-modal');
-  //   var modal = $(this);
-  //   modal.find('.modal-title').text(title);
-  //   console.log(event);
-  //   console.log(button);
-  //   var a = button.attr('href');
-  //   modal.find('.modal-body').load(a+".js");
-  //   console.log(a);
-  // });
+
+  $('#modalConfirm').on('shown.bs.modal', function(event) {
+    $('#modal').trigger('focus');
+    var target = $(event.relatedTarget);
+    var mensagem = target.data('mensage');
+    var modal = $(this);
+    var link = target.attr('href');
+    modal.find('.messageModal').text(mensagem);
+
+    modal.find("#btnConfirmation").click(function(event) {
+      event.preventDefault();
+      $.ajax({
+        url: link+".json",
+        type: 'DELETE',
+        success: function(result){
+          console.log(result);
+        },
+        // error: function(){
+        //   window.location.reload();
+        // },
+        contentType: 'html'
+      });
+
+    });
+  });
+
 });
