@@ -25,20 +25,28 @@ class AgenciesController < ApplicationController
   # POST /agencies.json
   def create
     @agency = Agency.new(agency_params)
-    if @agency.save
-      redirect_to agencies_path, notice: 'Agência criada com sucesso.'
-    else
-      render :new
+    respond_to do |format|
+      if @agency.save
+        format.html { redirect_to agencies_url, notice: 'Agência criada com sucesso.' }
+        format.json { render :index, status: :created, location: @agency }
+      else
+        format.html { render :new }
+        format.json { render json: @agency.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # PATCH/PUT /agencies/1
   # PATCH/PUT /agencies/1.json
   def update
-    if @agency.update(agency_params)
-      redirect_to agencies_path, notice: 'Agência atualizada com sucesso.'
-    else
-      render :edit
+    respond_to do |format|
+      if @agency.update(agency_params)
+        format.html { redirect_to agencies_path, notice: 'Agência atualizada com sucesso.' }
+        format.json { render :index, status: :ok, location: @agency }
+      else
+        format.json { render :edit }
+        format.json { render json: @agency.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -48,8 +56,8 @@ class AgenciesController < ApplicationController
     @agency.destroy
     #redirect_to agencies_path, notice: 'Agência excluída com sucesso.'
     respond_to do |format|
-      format.html { redirect_to agencies_path, notice: 'Agência excluída com sucesso.' }
-      format.json { redirect_to agencies_path, notice: 'Agência excluída com sucesso.' }
+      format.html { redirect_to agencies_url, notice: 'Agência excluída com sucesso.' }
+      format.json { head :no_content }
     end
   end
 

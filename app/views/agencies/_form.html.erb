@@ -1,4 +1,4 @@
-<%= form_with(model: agency) do |form| %>
+<%= form_with(model: agency, local: true) do |form| %>
   <% if agency.errors.any? %>
     <div id="error_explanation" class="alert alert-info" role="alert">
       <h5 class="alert-heading"><%= pluralize(agency.errors.count, "error") %> ao cadastrar agência:</h5>

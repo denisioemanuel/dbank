@@ -35,17 +35,10 @@ $(document).ready(function() {
     modal.find("#btnConfirmation").click(function(event) {
       event.preventDefault();
       $.ajax({
-        url: link+".json",
-        type: 'DELETE',
-        success: function(result){
-          console.log(result);
-        },
-        // error: function(){
-        //   window.location.reload();
-        // },
+        url: link,
+        type: 'DELETE'
         contentType: 'html'
       });
-
     });
   });
 
