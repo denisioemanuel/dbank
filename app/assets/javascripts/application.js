@@ -36,10 +36,15 @@ $(document).ready(function() {
       event.preventDefault();
       $.ajax({
         url: link,
-        type: 'DELETE'
+        type: 'DELETE',
         contentType: 'html'
       });
     });
+  });
+
+  $(".nav-link li a").click(function(){
+    $(".nav-link li a").find(".active").removeClass("active");
+    $(this).addClass("active");
   });
 
 });

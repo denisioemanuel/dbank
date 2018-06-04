@@ -1,31 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Contas</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <%= link_to 'Adicionar', new_account_path , class:'btn btn-sm btn-outline-secondary' %>
+    </div>
+  </div>
+</div>
 
-<h1>Accounts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Limit</th>
-      <th>Agency</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @accounts.each do |account| %>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
       <tr>
-        <td><%= account.number %></td>
-        <td><%= account.limit %></td>
-        <td><%= account.Agency.number %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Número da Conta</th>
+        <th>Limite da Conta</th>
+        <th>Agência</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @accounts.each do |account| %>
+        <tr>
+          <td><%= account.number %></td>
+          <td><%= account.limit %></td>
+          <td><%= account.Agency.number %></td>
+          <td>
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <%= link_to edit_account_path(account), class:"btn btn-primary btn-sm" do%>
+                <span class="fe fe-edit">
+                <%end%>
+              </div>
+              <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <%= link_to account_path(account), class:'btn btn-sm btn-danger', data: { toggle:'modal', mensage: 'Você tem certeza que deseja excluir?', target:'#modalConfirm' } do %>
+                <span class="fe fe-trash">
+                <%end%>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= render "layouts/shared/modalConfirmation"%>
 
-<%= link_to 'New Account', new_account_path %>
+<br/>

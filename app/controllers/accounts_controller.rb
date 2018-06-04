@@ -15,10 +15,12 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     @account = Account.new
+    get_agencies
   end
 
   # GET /accounts/1/edit
   def edit
+    get_agencies
   end
 
   # POST /accounts
@@ -28,7 +30,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to accounts_url, notice: 'Conta criada com sucesso.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to accounts_url, notice: 'Conta atualizada com sucesso.' }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class AccountsController < ApplicationController
   def destroy
     @account.destroy
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, notice: 'Conta deletada com sucesso.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +69,9 @@ class AccountsController < ApplicationController
       @account = Account.find(params[:id])
     end
 
+    def get_agencies
+      @agencies = Agency.all
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:number, :limit, :Agency_id)
